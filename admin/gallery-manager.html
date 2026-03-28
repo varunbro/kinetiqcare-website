@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Manager — Kinetiq Care Admin</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-icon">k</div>
+      <div><div class="s-text">kinetiq<span>care</span></div><div class="s-sub">Admin Panel</div></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="content-editor.html" class="sidebar-link"><i class="fas fa-edit"></i> Content Editor</a>
+      <a href="reports-manager.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports Manager</a>
+      <a href="gallery-manager.html" class="sidebar-link active"><i class="fas fa-images"></i> Gallery Manager</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Public Site</div>
+      <a href="../gallery.html" target="_blank" class="sidebar-link"><i class="fas fa-images"></i> Gallery Page</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-link logout" onclick="KCAuth.logout();return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1>Gallery Manager</h1>
+        <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> / Gallery Manager</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline btn-sm" onclick="exportJSON()"><i class="fas fa-download"></i> Export JSON</button>
+        <button class="btn btn-primary btn-sm" onclick="openModal()"><i class="fas fa-plus"></i> Add Item</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <div class="alert alert-info" id="draftAlert" style="display:none;">
+        <i class="fas fa-info-circle"></i>
+        <span>Unsaved changes. <strong>Export JSON</strong> and deploy to update the live gallery.</span>
+      </div>
+      <div class="alert alert-success" id="saveAlert" style="display:none;">
+        <i class="fas fa-check-circle"></i><span id="saveMsg"></span>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="panel">
+        <div class="panel-header">
+          <div><h2>Gallery Items</h2><p id="galleryCount">Loading...</p></div>
+          <div style="display:flex;gap:8px;">
+            <select id="filterCat" style="padding:8px 12px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;" onchange="renderGrid()">
+              <option value="all">All Categories</option>
+              <option value="sessions">Sessions</option>
+              <option value="team">Team</option>
+              <option value="facilities">Facilities</option>
+              <option value="patients">Patients</option>
+              <option value="events">Events</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="gallery-admin-grid" id="galleryGrid">
+            <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);"><i class="fas fa-spinner fa-spin" style="font-size:1.5rem;"></i></div>
+          </div>
+        </div>
+        <div class="panel-footer" style="display:flex;justify-content:space-between;align-items:center;">
+          <span id="gridInfo" style="font-size:0.8rem;color:var(--gray);"></span>
+          <button class="btn btn-primary" onclick="exportJSON()"><i class="fas fa-download"></i> Export JSON to Deploy</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" style="display:none;position:fixed;inset:0;background:rgba(13,27,42,0.6);z-index:500;align-items:center;justify-content:center;padding:24px;">
+    <div style="background:var(--white);border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;">
+      <div style="padding:20px 24px;border-bottom:1px solid #F0F2F5;display:flex;justify-content:space-between;align-items:center;">
+        <h2 style="font-size:1.05rem;color:var(--navy);" id="modalTitle">Add Gallery Item</h2>
+        <button onclick="closeModal()" style="background:#F0F2F5;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="galleryForm" style="padding:24px;">
+        <input type="hidden" id="editId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Title *</label>
+            <input type="text" id="f-title" placeholder="e.g. Sports Session" required />
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" id="f-subtitle" placeholder="e.g. Athlete Conditioning" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="f-cat" required>
+              <option value="sessions">Sessions</option>
+              <option value="team">Team</option>
+              <option value="facilities">Facilities</option>
+              <option value="patients">Patients</option>
+              <option value="events">Events</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Grid Span</label>
+            <select id="f-span">
+              <option value="">Normal</option>
+              <option value="tall">Tall (2 rows)</option>
+              <option value="wide">Wide (2 columns)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Emoji / Icon (shown as placeholder)</label>
+          <input type="text" id="f-icon" placeholder="🎥" maxlength="4" />
+        </div>
+        <div class="form-group">
+          <label>Image URL (leave blank to use emoji)</label>
+          <input type="text" id="f-img" placeholder="images/gallery/photo.jpg" />
+        </div>
+        <div class="form-group" style="flex-direction:row;align-items:center;gap:12px;">
+          <label class="toggle">
+            <input type="checkbox" id="f-published" checked />
+            <span class="toggle-slider"></span>
+          </label>
+          <span style="font-size:0.88rem;color:var(--navy);font-weight:500;">Visible on public gallery</span>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:8px;">
+          <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;"><i class="fas fa-save"></i> Save Item</button>
+          <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const DRAFT_KEY = 'kc_draft_gallery';
+    let items = [];
+
+    async function loadGallery() {
+      const draft = localStorage.getItem(DRAFT_KEY);
+      if (draft) {
+        try { const d=JSON.parse(draft); items=d.items||d; showDraftAlert(true); }
+        catch(e) { items=[]; }
+      } else {
+        try { const r=await fetch('../data/gallery.json'); const d=await r.json(); items=d.items||d; }
+        catch(e) { items=[]; }
+      }
+      renderGrid();
+    }
+
+    function renderGrid() {
+      const cat = document.getElementById('filterCat').value;
+      const filtered = cat==='all' ? items : items.filter(i=>i.category===cat);
+      const grid = document.getElementById('galleryGrid');
+      const pub = items.filter(i=>i.published!==false).length;
+      document.getElementById('galleryCount').textContent = `${items.length} total · ${pub} visible · ${items.length-pub} hidden`;
+      document.getElementById('gridInfo').textContent = `Showing ${filtered.length} of ${items.length} items`;
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--gray);">No items in this category.</div>';
+        return;
+      }
+      grid.innerHTML = filtered.map(item => `
+        <div class="gallery-admin-card ${item.published===false?'unpublished':''}">
+          <div class="gallery-thumb">${item.imageSrc?`<img src="../${item.imageSrc}" style="width:100%;height:100%;object-fit:cover;" alt="${item.title}" />`:`<span style="font-size:2.5rem;">${item.icon||'🖼️'}</span>`}</div>
+          <div class="gallery-card-body">
+            <h4>${item.title}</h4>
+            <div class="cat">${item.category} ${item.span?`· ${item.span}`:''}</div>
+            <div class="gallery-card-actions">
+              <button class="btn btn-ghost btn-sm" onclick="editItem('${item.id}')" title="Edit"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-${item.published!==false?'success':'ghost'} btn-sm" onclick="togglePublish('${item.id}')" title="${item.published!==false?'Unpublish':'Publish'}">
+                <i class="fas fa-${item.published!==false?'eye':'eye-slash'}"></i>
+              </button>
+              <button class="btn btn-danger btn-sm" onclick="deleteItem('${item.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    function togglePublish(id) {
+      const item = items.find(i=>i.id===id);
+      if (item) { item.published = item.published===false?true:false; saveDraft(); renderGrid(); }
+    }
+
+    function deleteItem(id) {
+      if (!confirm('Delete this gallery item?')) return;
+      items = items.filter(i=>i.id!==id);
+      saveDraft(); renderGrid();
+    }
+
+    function openModal(id=null) {
+      document.getElementById('editId').value='';
+      document.getElementById('galleryForm').reset();
+      document.getElementById('f-published').checked=true;
+      document.getElementById('modalTitle').textContent='Add Gallery Item';
+      if(id){
+        const item=items.find(i=>i.id===id);
+        if(item){
+          document.getElementById('editId').value=id;
+          document.getElementById('f-title').value=item.title||'';
+          document.getElementById('f-subtitle').value=item.subtitle||'';
+          document.getElementById('f-cat').value=item.category||'sessions';
+          document.getElementById('f-span').value=item.span||'';
+          document.getElementById('f-icon').value=item.icon||'';
+          document.getElementById('f-img').value=item.imageSrc||'';
+          document.getElementById('f-published').checked=item.published!==false;
+          document.getElementById('modalTitle').textContent='Edit Gallery Item';
+        }
+      }
+      document.getElementById('modal').style.display='flex';
+    }
+
+    function editItem(id){ openModal(id); }
+    function closeModal(){ document.getElementById('modal').style.display='none'; }
+
+    document.getElementById('galleryForm').addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const id=document.getElementById('editId').value;
+      const data={
+        id: id||'gal-'+Date.now(),
+        published: document.getElementById('f-published').checked,
+        category: document.getElementById('f-cat').value,
+        title: document.getElementById('f-title').value,
+        subtitle: document.getElementById('f-subtitle').value,
+        icon: document.getElementById('f-icon').value||'🖼️',
+        imageSrc: document.getElementById('f-img').value,
+        span: document.getElementById('f-span').value,
+        addedAt: new Date().toISOString()
+      };
+      if(id){ const idx=items.findIndex(i=>i.id===id); if(idx>-1) items[idx]=data; }
+      else items.unshift(data);
+      saveDraft(); renderGrid(); closeModal();
+      showAlert('Gallery item saved. Export JSON to publish.');
+    });
+
+    function saveDraft(){
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ items }));
+      showDraftAlert(true);
+    }
+    function showDraftAlert(s){ document.getElementById('draftAlert').style.display=s?'flex':'none'; }
+    function showAlert(msg){ const el=document.getElementById('saveAlert'); document.getElementById('saveMsg').textContent=msg; el.style.display='flex'; setTimeout(()=>{el.style.display='none';},4000); }
+
+    function exportJSON(){
+      const json=JSON.stringify({ items },null,2);
+      const blob=new Blob([json],{type:'application/json'});
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download='gallery.json';
+      a.click();
+      showAlert('gallery.json downloaded! Place it in data/ folder and push to GitHub.');
+    }
+
+    document.getElementById('modal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('modal')) closeModal(); });
+    loadGallery();
+  </script>
+</body>
+</html>

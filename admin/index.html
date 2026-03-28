@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Kinetiq Care</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="l-icon">k</div>
+      <div>
+        <div class="l-text">kinetiq<span>care</span></div>
+        <div style="font-size:0.7rem;color:var(--gray);letter-spacing:0.05em;">Admin Dashboard</div>
+      </div>
+    </div>
+
+    <h2>Welcome Back</h2>
+    <p class="sub">Sign in to manage your website content and reports.</p>
+
+    <div class="login-error" id="loginError">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="errorMsg">Incorrect password. Please try again.</span>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="password">Admin Password</label>
+        <div style="position:relative;">
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required />
+          <button type="button" id="togglePw" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);cursor:pointer;font-size:0.9rem;">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn-login" id="loginBtn">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+
+    <p class="login-hint">
+      <i class="fas fa-lock" style="margin-right:4px;"></i>
+      Secure admin access · Session expires after 8 hours
+    </p>
+
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid #F0F2F5;text-align:center;">
+      <a href="../index.html" style="font-size:0.82rem;color:var(--teal);display:inline-flex;align-items:center;gap:6px;">
+        <i class="fas fa-arrow-left"></i> Back to Public Site
+      </a>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // If already logged in, redirect to dashboard
+    if (KCAuth.isLoggedIn()) window.location.replace('dashboard.html');
+
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('loginError');
+    const errorMsg = document.getElementById('errorMsg');
+    const btn = document.getElementById('loginBtn');
+    let attempts = parseInt(sessionStorage.getItem('kc_attempts') || '0');
+
+    // Toggle password visibility
+    document.getElementById('togglePw').addEventListener('click', function() {
+      const input = document.getElementById('password');
+      const icon = this.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (attempts >= 5) {
+        errorBox.style.display = 'flex';
+        errorMsg.textContent = 'Too many attempts. Please refresh the page to try again.';
+        return;
+      }
+
+      const pw = document.getElementById('password').value;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+
+      const ok = await KCAuth.login(pw);
+      if (ok) {
+        sessionStorage.removeItem('kc_attempts');
+        btn.innerHTML = '<i class="fas fa-check"></i> Success!';
+        btn.style.background = '#10B981';
+        setTimeout(() => window.location.replace('dashboard.html'), 600);
+      } else {
+        attempts++;
+        sessionStorage.setItem('kc_attempts', attempts);
+        errorBox.style.display = 'flex';
+        errorMsg.textContent = attempts >= 5
+          ? 'Too many attempts. Refresh the page to try again.'
+          : `Incorrect password. ${5 - attempts} attempt(s) remaining.`;
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+      }
+    });
+  </script>
+</body>
+</html>

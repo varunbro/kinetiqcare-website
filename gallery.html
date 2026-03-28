@@ -10,14 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    .gallery-placeholder { cursor: pointer; }
-    .gallery-placeholder .ph-icon { font-size: 3.5rem; position: relative; z-index: 1; }
-    .gallery-placeholder .ph-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; color: var(--gray); text-transform: uppercase; position: relative; z-index: 1; }
+    .gallery-placeholder { cursor:pointer; }
+    .gallery-placeholder .ph-icon { font-size:3.5rem; position:relative; z-index:1; }
+    .gallery-placeholder .ph-label { font-size:0.8rem; font-weight:600; letter-spacing:0.08em; color:var(--gray); text-transform:uppercase; position:relative; z-index:1; }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
@@ -36,28 +35,21 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="contact.html" class="nav-cta">Book Session</a></li>
       </ul>
-      <button class="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <span class="section-label">Visual Stories</span>
     <h1>Our <span>Photo Gallery</span></h1>
     <p>A glimpse into our sessions, facilities, team moments and patient transformations.</p>
     <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span>/</span>
-      <span>Gallery</span>
+      <a href="index.html">Home</a><span>/</span><span>Gallery</span>
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
-  <section class="section-pad" style="background: var(--cream);">
+  <section class="section-pad" style="background:var(--cream);">
     <div class="container">
-      <!-- Filters -->
       <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">All Photos</button>
         <button class="filter-btn" data-filter="sessions">Live Sessions</button>
@@ -67,158 +59,16 @@
         <button class="filter-btn" data-filter="events">Events</button>
       </div>
 
-      <!-- Gallery Grid -->
-      <div class="gallery-grid">
-
-        <div class="gallery-item tall" data-category="sessions" style="grid-row:span 2;">
-          <div class="gallery-placeholder" style="height:100%;min-height:420px;">
-            <div class="ph-icon">🎥</div>
-            <div class="ph-label">Live Physio Session</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Live Physio Session</span>
-            <small>Online Consultation</small>
-          </div>
+      <!-- Dynamic gallery injected here -->
+      <div class="gallery-grid" id="gallery-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);">
+          <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--teal);margin-bottom:12px;display:block;"></i>
+          Loading gallery...
         </div>
-
-        <div class="gallery-item" data-category="team">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">👨‍⚕️</div>
-            <div class="ph-label">Dr. Arjun Kapoor</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Dr. Arjun Kapoor</span>
-            <small>Orthopaedic Specialist</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="facilities">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🏥</div>
-            <div class="ph-label">Assessment Suite</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Assessment Suite</span>
-            <small>Virtual Facility</small>
-          </div>
-        </div>
-
-        <div class="gallery-item wide" data-category="patients" style="grid-column:span 2;">
-          <div class="gallery-placeholder" style="min-height:220px;">
-            <div class="ph-icon">🏆</div>
-            <div class="ph-label">Patient Success — Knee Recovery</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Patient Success Story</span>
-            <small>Knee Recovery Journey</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="sessions">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🏃</div>
-            <div class="ph-label">Sports Rehab Session</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Sports Rehab Session</span>
-            <small>Athlete Conditioning</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="team">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">👩‍⚕️</div>
-            <div class="ph-label">Dr. Shreya Patel</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Dr. Shreya Patel</span>
-            <small>Sports Rehabilitation</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="facilities">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">💻</div>
-            <div class="ph-label">Virtual Consultation Room</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Virtual Consultation</span>
-            <small>HD Video Setup</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="events">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🎤</div>
-            <div class="ph-label">Wellness Webinar</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Wellness Webinar</span>
-            <small>Patient Education Event</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="patients">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">😊</div>
-            <div class="ph-label">Rajesh's Recovery</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Rajesh's Recovery</span>
-            <small>Post-Surgery Rehab</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="sessions">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🧠</div>
-            <div class="ph-label">Neuro Rehab Session</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Neuro Rehab Session</span>
-            <small>Balance Training</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="team">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">👥</div>
-            <div class="ph-label">Team Meeting</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Team Huddle</span>
-            <small>Clinical Review Session</small>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="events">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🏅</div>
-            <div class="ph-label">Healthcare Award 2024</div>
-          </div>
-          <div class="gallery-overlay">
-            <i class="fas fa-expand-arrows-alt"></i>
-            <span>Healthcare Innovation Award</span>
-            <small>Best Virtual Physio Platform 2024</small>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- VIDEO SECTION -->
   <section class="section-pad">
     <div class="container">
       <div class="text-center">
@@ -227,44 +77,13 @@
         <p class="section-subtitle">Short clips from our live sessions, patient journeys, and expert tips.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;">
-        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
-          <div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-mid));position:relative;">
-            <div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;">
-              <i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i>
-            </div>
-          </div>
-          <div style="padding:20px;">
-            <h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">Your First Virtual Physio Session</h4>
-            <p style="color:var(--gray);font-size:0.82rem;">3:24 · Onboarding</p>
-          </div>
-        </div>
-        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
-          <div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),rgba(46,196,182,0.3));position:relative;">
-            <div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;">
-              <i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i>
-            </div>
-          </div>
-          <div style="padding:20px;">
-            <h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">Priya's Sports Rehab Journey</h4>
-            <p style="color:var(--gray);font-size:0.82rem;">5:12 · Patient Story</p>
-          </div>
-        </div>
-        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
-          <div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--teal-dark),var(--navy));position:relative;">
-            <div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;">
-              <i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i>
-            </div>
-          </div>
-          <div style="padding:20px;">
-            <h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">5 Morning Exercises for Back Pain</h4>
-            <p style="color:var(--gray);font-size:0.82rem;">8:47 · Expert Tips</p>
-          </div>
-        </div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''"><div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),var(--navy-mid));position:relative;"><div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;"><i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i></div></div><div style="padding:20px;"><h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">Your First Virtual Physio Session</h4><p style="color:var(--gray);font-size:0.82rem;">3:24 · Onboarding</p></div></div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''"><div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy),rgba(46,196,182,0.3));position:relative;"><div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;"><i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i></div></div><div style="padding:20px;"><h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">Priya's Sports Rehab Journey</h4><p style="color:var(--gray);font-size:0.82rem;">5:12 · Patient Story</p></div></div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:var(--transition);" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''"><div style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--teal-dark),var(--navy));position:relative;"><div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;"><i class="fas fa-play" style="color:var(--navy);margin-left:4px;"></i></div></div><div style="padding:20px;"><h4 style="color:var(--white);margin-bottom:6px;font-size:1rem;">5 Morning Exercises for Back Pain</h4><p style="color:var(--gray);font-size:0.82rem;">8:47 · Expert Tips</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
     <div class="container" style="position:relative;z-index:1;">
       <h2>Ready to Write Your Own Story?</h2>
@@ -276,75 +95,47 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo-brand">kinetiq<span>care</span></div>
-          <div class="tagline">Virtual Physiotherapy · Anywhere</div>
-          <p>Expert physiotherapy delivered to your screen. No commute, no waiting room — just real results from certified professionals.</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="facilities.html">Facilities</a></li>
-            <li><a href="gallery.html">Photo Gallery</a></li>
-            <li><a href="reports.html">Download Reports</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#">Orthopaedic Physio</a></li>
-            <li><a href="#">Sports Rehabilitation</a></li>
-            <li><a href="#">Neuro Rehab</a></li>
-            <li><a href="#">Cardio Physiotherapy</a></li>
-            <li><a href="#">Chronic Care</a></li>
-            <li><a href="#">Fitness for All</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <div class="footer-contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p>Available Pan-India via Virtual Consultations</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-phone"></i>
-            <p>+91 98765 43210</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-envelope"></i>
-            <p>hello@kinetiqcare.in</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-clock"></i>
-            <p>Mon–Sat: 6 AM – 9 PM<br/>Sun: 8 AM – 6 PM</p>
-          </div>
-        </div>
+        <div class="footer-brand"><div class="logo-brand">kinetiq<span>care</span></div><div class="tagline">Virtual Physiotherapy · Anywhere</div><p>Expert physiotherapy delivered to your screen. No commute, no waiting room — just real results from certified professionals.</p><div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="facilities.html">Facilities</a></li><li><a href="gallery.html">Photo Gallery</a></li><li><a href="reports.html">Download Reports</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Orthopaedic Physio</a></li><li><a href="#">Sports Rehabilitation</a></li><li><a href="#">Neuro Rehab</a></li><li><a href="#">Cardio Physiotherapy</a></li><li><a href="#">Chronic Care</a></li><li><a href="#">Fitness for All</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item"><i class="fas fa-phone"></i><p>+91 98765 43210</p></div><div class="footer-contact-item"><i class="fas fa-envelope"></i><p>hello@kinetiqcare.in</p></div><div class="footer-contact-item"><i class="fas fa-clock"></i><p>Mon–Sat: 6 AM – 9 PM<br/>Sun: 8 AM – 6 PM</p></div></div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Kinetiq Care. All rights reserved. | @kinetiqcare</p>
-        <div class="badges">
-          <span class="badge">HIPAA Compliant</span>
-          <span class="badge">ISO Certified</span>
-          <span class="badge">Now Live in India</span>
-        </div>
-      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Kinetiq Care. All rights reserved. | @kinetiqcare</p><div class="badges"><span class="badge">HIPAA Compliant</span><span class="badge">ISO Certified</span><span class="badge">Now Live in India</span></div></div>
     </div>
   </footer>
 
+  <script src="js/data-loader.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    function renderGallery(items) {
+      const grid = document.getElementById('gallery-grid');
+      if (!items.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);">No gallery items.</div>';
+        return;
+      }
+      grid.innerHTML = items.map(item => {
+        const spanClass = item.span === 'tall' ? ' tall' : item.span === 'wide' ? ' wide' : '';
+        const style = item.span === 'tall' ? 'style="grid-row:span 2;"' : item.span === 'wide' ? 'style="grid-column:span 2;"' : '';
+        const inner = item.imageSrc
+          ? `<img src="${item.imageSrc}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" />`
+          : `<div class="gallery-placeholder" style="height:100%;min-height:200px;"><div class="ph-icon">${item.icon}</div><div class="ph-label">${item.title}</div></div>`;
+        return `<div class="gallery-item${spanClass}" data-category="${item.category}" ${style}>
+          ${inner}
+          <div class="gallery-overlay">
+            <i class="fas fa-expand-arrows-alt"></i>
+            <span>${item.title}</span>
+            <small>${item.subtitle}</small>
+          </div>
+        </div>`;
+      }).join('');
+      document.dispatchEvent(new CustomEvent('kcContentLoaded'));
+      window.initGalleryFilter();
+    }
+
+    KCData.loadGallery().then(renderGallery);
+  </script>
 </body>
 </html>

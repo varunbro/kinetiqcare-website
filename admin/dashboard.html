@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Kinetiq Care Admin</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-icon">k</div>
+      <div>
+        <div class="s-text">kinetiq<span>care</span></div>
+        <div class="s-sub">Admin Panel</div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link active"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="content-editor.html" class="sidebar-link"><i class="fas fa-edit"></i> Content Editor</a>
+      <a href="reports-manager.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports Manager</a>
+      <a href="gallery-manager.html" class="sidebar-link"><i class="fas fa-images"></i> Gallery Manager</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Public Site</div>
+      <a href="../index.html" target="_blank" class="sidebar-link"><i class="fas fa-home"></i> Homepage</a>
+      <a href="../gallery.html" target="_blank" class="sidebar-link"><i class="fas fa-images"></i> Gallery</a>
+      <a href="../reports.html" target="_blank" class="sidebar-link"><i class="fas fa-file-download"></i> Reports</a>
+      <a href="../contact.html" target="_blank" class="sidebar-link"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-link logout" onclick="KCAuth.logout();return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1>Dashboard</h1>
+        <div class="breadcrumb">Kinetiq Care Admin</div>
+      </div>
+      <div class="header-actions">
+        <div class="header-badge"><span class="dot"></span> Site Live</div>
+        <a href="../index.html" target="_blank" class="btn btn-outline btn-sm"><i class="fas fa-external-link-alt"></i> View Site</a>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- Welcome -->
+      <div style="margin-bottom:28px;">
+        <h2 style="font-size:1.5rem;color:var(--navy);margin-bottom:4px;">Good to see you 👋</h2>
+        <p style="color:var(--gray);font-size:0.9rem;">Here's an overview of your Kinetiq Care website.</p>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-icon teal"><i class="fas fa-file-alt"></i></div>
+          <div>
+            <div class="stat-num" id="sc-reports">—</div>
+            <div class="stat-label">Published Reports</div>
+            <div class="stat-change up" id="sc-reports-draft"></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-images"></i></div>
+          <div>
+            <div class="stat-num" id="sc-gallery">—</div>
+            <div class="stat-label">Gallery Items</div>
+            <div class="stat-change up" id="sc-gallery-hidden"></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-edit"></i></div>
+          <div>
+            <div class="stat-num" id="sc-edits">0</div>
+            <div class="stat-label">Pending Edits</div>
+            <div class="stat-change" id="sc-edits-label" style="color:var(--gray);">Unsaved drafts</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber"><i class="fas fa-globe"></i></div>
+          <div>
+            <div class="stat-num">6</div>
+            <div class="stat-label">Public Pages</div>
+            <div class="stat-change up"><i class="fas fa-check" style="font-size:0.7rem;"></i> All live</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid: Quick Actions + Recent Activity -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+        <!-- Quick Actions -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Quick Actions</h2>
+              <p>Common admin tasks</p>
+            </div>
+          </div>
+          <div class="panel-body" style="display:flex;flex-direction:column;gap:12px;">
+            <a href="reports-manager.html" class="btn btn-primary btn-full"><i class="fas fa-plus"></i> Add New Report</a>
+            <a href="gallery-manager.html" class="btn btn-outline btn-full"><i class="fas fa-upload"></i> Add Gallery Item</a>
+            <a href="content-editor.html" class="btn btn-outline btn-full"><i class="fas fa-edit"></i> Edit Homepage Copy</a>
+            <a href="../index.html" target="_blank" class="btn btn-ghost btn-full"><i class="fas fa-eye"></i> Preview Public Site</a>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Recent Activity</h2>
+              <p>Latest changes made</p>
+            </div>
+          </div>
+          <div class="panel-body" style="padding-top:0;">
+            <div class="activity-list" id="activityList">
+              <div class="activity-item">
+                <div class="activity-icon teal" style="background:rgba(46,196,182,0.12);color:var(--teal);"><i class="fas fa-file-alt"></i></div>
+                <div>
+                  <div class="activity-title">Website launched</div>
+                  <div class="activity-sub">6 pages published to GitHub Pages</div>
+                </div>
+                <div class="activity-time">Today</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon" style="background:var(--green-bg);color:var(--green);"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <div class="activity-title">9 reports added</div>
+                  <div class="activity-sub">All published to reports page</div>
+                </div>
+                <div class="activity-time">Today</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon" style="background:var(--blue-bg);color:var(--blue);"><i class="fas fa-images"></i></div>
+                <div>
+                  <div class="activity-title">12 gallery items added</div>
+                  <div class="activity-sub">Gallery page populated</div>
+                </div>
+                <div class="activity-time">Today</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pages Overview -->
+      <div class="panel" style="margin-top:0;">
+        <div class="panel-header">
+          <div><h2>Site Pages</h2><p>All public-facing pages</p></div>
+          <a href="../index.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-external-link-alt"></i> Open Site</a>
+        </div>
+        <div class="panel-body" style="padding:0;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>URL</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-title">Homepage<small>Hero, services, testimonials</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">index.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="content-editor.html" class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i> Edit</a><a href="../index.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+              <tr>
+                <td class="td-title">About Us<small>Team, mission, milestones</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">about.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="../about.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+              <tr>
+                <td class="td-title">Photo Gallery<small>Filterable image gallery</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">gallery.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="gallery-manager.html" class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i> Manage</a><a href="../gallery.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+              <tr>
+                <td class="td-title">Download Reports<small>Patient resource library</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">reports.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="reports-manager.html" class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i> Manage</a><a href="../reports.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+              <tr>
+                <td class="td-title">Facilities<small>Equipment, accreditations</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">facilities.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="../facilities.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+              <tr>
+                <td class="td-title">Contact Us<small>Booking form, FAQ</small></td>
+                <td style="font-size:0.8rem;color:var(--gray);">contact.html</td>
+                <td><span class="badge badge-published"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Live</span></td>
+                <td><div class="table-actions"><a href="../contact.html" target="_blank" class="btn btn-ghost btn-sm"><i class="fas fa-eye"></i></a></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Export Instructions -->
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i>
+        <span><strong>How publishing works:</strong> Edit content in any manager, then click "Export JSON". Place the downloaded file in the <code>data/</code> folder, commit and push to GitHub — the live site updates automatically within ~60 seconds.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Load stats from localStorage drafts or JSON files
+    async function loadStats() {
+      // Reports
+      try {
+        const rDraft = localStorage.getItem('kc_draft_reports');
+        const rData = rDraft ? JSON.parse(rDraft) : await fetch('../data/reports.json').then(r=>r.json());
+        const rList = rData.reports || rData;
+        const pub = rList.filter(r=>r.published!==false).length;
+        const draft = rList.filter(r=>r.published===false).length;
+        document.getElementById('sc-reports').textContent = pub;
+        if (draft) document.getElementById('sc-reports-draft').textContent = `${draft} unpublished`;
+      } catch(e) { document.getElementById('sc-reports').textContent = '9'; }
+
+      // Gallery
+      try {
+        const gDraft = localStorage.getItem('kc_draft_gallery');
+        const gData = gDraft ? JSON.parse(gDraft) : await fetch('../data/gallery.json').then(r=>r.json());
+        const gList = gData.items || gData;
+        const gpub = gList.filter(i=>i.published!==false).length;
+        const ghide = gList.filter(i=>i.published===false).length;
+        document.getElementById('sc-gallery').textContent = gpub;
+        if (ghide) document.getElementById('sc-gallery-hidden').textContent = `${ghide} hidden`;
+      } catch(e) { document.getElementById('sc-gallery').textContent = '12'; }
+
+      // Pending edits (check draft keys)
+      const draftKeys = ['kc_draft_reports','kc_draft_gallery','kc_draft_content'].filter(k=>localStorage.getItem(k));
+      document.getElementById('sc-edits').textContent = draftKeys.length;
+      if (draftKeys.length) {
+        document.getElementById('sc-edits-label').textContent = 'Export to publish';
+        document.getElementById('sc-edits-label').style.color = 'var(--amber)';
+      }
+    }
+    loadStats();
+  </script>
+</body>
+</html>

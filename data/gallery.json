@@ -1,0 +1,136 @@
+{
+  "items": [
+    {
+      "id": "gal-001",
+      "published": true,
+      "category": "sessions",
+      "title": "Live Physio Session",
+      "subtitle": "Online Consultation",
+      "icon": "🎥",
+      "imageSrc": "",
+      "span": "tall",
+      "addedAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "gal-002",
+      "published": true,
+      "category": "team",
+      "title": "Dr. Arjun Kapoor",
+      "subtitle": "Orthopaedic Specialist",
+      "icon": "👨‍⚕️",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-02T00:00:00Z"
+    },
+    {
+      "id": "gal-003",
+      "published": true,
+      "category": "facilities",
+      "title": "Assessment Suite",
+      "subtitle": "Virtual Facility",
+      "icon": "🏥",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-03T00:00:00Z"
+    },
+    {
+      "id": "gal-004",
+      "published": true,
+      "category": "patients",
+      "title": "Patient Success Story",
+      "subtitle": "Knee Recovery Journey",
+      "icon": "🏆",
+      "imageSrc": "",
+      "span": "wide",
+      "addedAt": "2025-01-04T00:00:00Z"
+    },
+    {
+      "id": "gal-005",
+      "published": true,
+      "category": "sessions",
+      "title": "Sports Rehab Session",
+      "subtitle": "Athlete Conditioning",
+      "icon": "🏃",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-05T00:00:00Z"
+    },
+    {
+      "id": "gal-006",
+      "published": true,
+      "category": "team",
+      "title": "Dr. Shreya Patel",
+      "subtitle": "Sports Rehabilitation",
+      "icon": "👩‍⚕️",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-06T00:00:00Z"
+    },
+    {
+      "id": "gal-007",
+      "published": true,
+      "category": "facilities",
+      "title": "Virtual Consultation",
+      "subtitle": "HD Video Setup",
+      "icon": "💻",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-07T00:00:00Z"
+    },
+    {
+      "id": "gal-008",
+      "published": true,
+      "category": "events",
+      "title": "Wellness Webinar",
+      "subtitle": "Patient Education Event",
+      "icon": "🎤",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-08T00:00:00Z"
+    },
+    {
+      "id": "gal-009",
+      "published": true,
+      "category": "patients",
+      "title": "Rajesh's Recovery",
+      "subtitle": "Post-Surgery Rehab",
+      "icon": "😊",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-09T00:00:00Z"
+    },
+    {
+      "id": "gal-010",
+      "published": true,
+      "category": "sessions",
+      "title": "Neuro Rehab Session",
+      "subtitle": "Balance Training",
+      "icon": "🧠",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-10T00:00:00Z"
+    },
+    {
+      "id": "gal-011",
+      "published": true,
+      "category": "team",
+      "title": "Team Huddle",
+      "subtitle": "Clinical Review Session",
+      "icon": "👥",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-11T00:00:00Z"
+    },
+    {
+      "id": "gal-012",
+      "published": true,
+      "category": "events",
+      "title": "Healthcare Innovation Award",
+      "subtitle": "Best Virtual Physio Platform 2024",
+      "icon": "🏅",
+      "imageSrc": "",
+      "span": "",
+      "addedAt": "2025-01-12T00:00:00Z"
+    }
+  ]
+}

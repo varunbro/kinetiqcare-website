@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Editor — Kinetiq Care Admin</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-icon">k</div>
+      <div><div class="s-text">kinetiq<span>care</span></div><div class="s-sub">Admin Panel</div></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="content-editor.html" class="sidebar-link active"><i class="fas fa-edit"></i> Content Editor</a>
+      <a href="reports-manager.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports Manager</a>
+      <a href="gallery-manager.html" class="sidebar-link"><i class="fas fa-images"></i> Gallery Manager</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Public Site</div>
+      <a href="../index.html" target="_blank" class="sidebar-link"><i class="fas fa-home"></i> Homepage</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-link logout" onclick="KCAuth.logout();return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1>Content Editor</h1>
+        <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> / Content Editor</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline btn-sm" onclick="resetDraft()"><i class="fas fa-undo"></i> Reset to Published</button>
+        <button class="btn btn-outline btn-sm" onclick="exportJSON()"><i class="fas fa-download"></i> Export JSON</button>
+        <button class="btn btn-primary btn-sm" onclick="saveDraft()"><i class="fas fa-save"></i> Save Draft</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <div class="alert alert-info" id="draftAlert" style="display:none;">
+        <i class="fas fa-info-circle"></i>
+        <span>Draft saved. <strong>Export JSON</strong>, place in <code>data/content.json</code>, and push to GitHub to go live.</span>
+      </div>
+      <div class="alert alert-success" id="saveAlert" style="display:none;">
+        <i class="fas fa-check-circle"></i><span id="saveMsg">Draft saved.</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start;">
+
+        <!-- Form -->
+        <div>
+          <!-- Hero Section -->
+          <div class="panel">
+            <div class="panel-header">
+              <div><h2><i class="fas fa-star" style="color:var(--teal);margin-right:8px;font-size:0.9rem;"></i>Hero Section</h2><p>Main headline and call-to-action on the homepage</p></div>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Badge Text</label>
+                <input type="text" id="hero-badge" placeholder="Now Live in India" oninput="updatePreview()" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Headline Top Line</label>
+                  <input type="text" id="hero-top" placeholder="Physio at Your" oninput="updatePreview()" />
+                </div>
+                <div class="form-group">
+                  <label>Headline Highlight (teal)</label>
+                  <input type="text" id="hero-highlight" placeholder="Fingertips." oninput="updatePreview()" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Subtext / Description</label>
+                <textarea id="hero-sub" rows="3" placeholder="Expert physiotherapy — from your home..." oninput="updatePreview()"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Primary CTA Label</label>
+                  <input type="text" id="cta-primary" placeholder="Book a Session" oninput="updatePreview()" />
+                </div>
+                <div class="form-group">
+                  <label>Secondary CTA Label</label>
+                  <input type="text" id="cta-secondary" placeholder="Learn More" oninput="updatePreview()" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="panel">
+            <div class="panel-header">
+              <div><h2><i class="fas fa-chart-bar" style="color:var(--teal);margin-right:8px;font-size:0.9rem;"></i>Hero Stats</h2><p>Three numbers shown below the CTA buttons</p></div>
+            </div>
+            <div class="panel-body">
+              <div id="statsForm"></div>
+            </div>
+          </div>
+
+          <!-- Services Section Label -->
+          <div class="panel">
+            <div class="panel-header">
+              <div><h2><i class="fas fa-th-large" style="color:var(--teal);margin-right:8px;font-size:0.9rem;"></i>Services Section</h2><p>Label, title and subtitle above the service cards</p></div>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Section Label</label>
+                <input type="text" id="svc-label" placeholder="Our Specialities" oninput="updatePreview()" />
+              </div>
+              <div class="form-group">
+                <label>Section Subtitle</label>
+                <textarea id="svc-subtitle" rows="2" placeholder="Whether you're recovering from surgery..." oninput="updatePreview()"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services Cards -->
+          <div class="panel">
+            <div class="panel-header">
+              <div><h2><i class="fas fa-list" style="color:var(--teal);margin-right:8px;font-size:0.9rem;"></i>Service Cards</h2><p>Edit the 6 service card titles and descriptions</p></div>
+            </div>
+            <div class="panel-body">
+              <div id="servicesForm"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="preview-panel">
+          <h3><i class="fas fa-eye" style="margin-right:6px;"></i> Live Preview</h3>
+          <div class="preview-hero-badge" id="prev-badge">Now Live in India</div>
+          <div class="preview-title" id="prev-title">
+            Physio at Your<br><span class="hl" id="prev-highlight">Fingertips.</span>
+          </div>
+          <div class="preview-sub" id="prev-sub">Expert physiotherapy — from your home, your office, or anywhere you are. No commute. No waiting room. Real results.</div>
+          <div style="display:flex;gap:10px;margin-bottom:20px;">
+            <div style="background:var(--teal);color:var(--navy);padding:8px 16px;border-radius:100px;font-size:0.78rem;font-weight:700;" id="prev-cta1">Book a Session</div>
+            <div style="border:1.5px solid rgba(255,255,255,0.4);color:var(--white);padding:8px 16px;border-radius:100px;font-size:0.78rem;font-weight:600;" id="prev-cta2">Learn More</div>
+          </div>
+          <div class="preview-stats" id="prev-stats"></div>
+
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;" id="prev-svc-label">Our Specialities</div>
+            <div class="service-preview-grid" id="prev-services"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DRAFT_KEY = 'kc_draft_content';
+    let content = null;
+
+    async function loadContent() {
+      const draft = localStorage.getItem(DRAFT_KEY);
+      if (draft) {
+        try { content = JSON.parse(draft); showDraftAlert(true); }
+        catch(e) { content = null; }
+      }
+      if (!content) {
+        try {
+          const res = await fetch('../data/content.json');
+          content = await res.json();
+        } catch(e) {
+          content = {
+            hero: { badge:'Now Live in India', headlineTop:'Physio at Your', headlineHighlight:'Fingertips.', subtext:'Expert physiotherapy — from your home, your office, or anywhere you are. No commute. No waiting room. Real results.', ctaPrimary:{label:'Book a Session',href:'contact.html'}, ctaSecondary:{label:'Learn More',href:'about.html'} },
+            stats: [ {id:'stat-patients',target:2500,suffix:'+',label:'Patients Treated'}, {id:'stat-physios',target:50,suffix:'+',label:'Expert Physios'}, {id:'stat-satisfaction',target:98,suffix:'%',label:'Satisfaction Rate'} ],
+            servicesSection: { label:'Our Specialities', subtitle:'Whether you\'re recovering from surgery or managing a chronic condition, our certified physios are here for you.' },
+            services: [
+              {id:'svc-ortho',icon:'fa-bone',title:'Orthopaedic',description:'Joints, spine, post-surgery recovery and musculoskeletal conditions treated with evidence-based protocols.'},
+              {id:'svc-sports',icon:'fa-running',title:'Sports Rehab',description:'Injury recovery and athlete conditioning programs designed by sports physio specialists.'},
+              {id:'svc-neuro',icon:'fa-brain',title:'Neuro Rehab',description:'Stroke, Parkinson\'s, balance disorders — expert neurological rehabilitation from home.'},
+              {id:'svc-cardio',icon:'fa-heartbeat',title:'Cardio Physio',description:'Post-bypass, breathing rehabilitation, and endurance training for a stronger heart and lungs.'},
+              {id:'svc-chronic',icon:'fa-infinity',title:'Chronic Care',description:'Arthritis, fibromyalgia, long-term pain management — sustained relief through personalized therapy.'},
+              {id:'svc-fitness',icon:'fa-dumbbell',title:'Fitness for All',description:'Teens to seniors — safe, structured fitness programs to improve strength, mobility and quality of life.'}
+            ]
+          };
+        }
+      }
+      populateForm();
+      buildStatsForm();
+      buildServicesForm();
+      updatePreview();
+    }
+
+    function populateForm() {
+      const h = content.hero;
+      document.getElementById('hero-badge').value = h.badge||'';
+      document.getElementById('hero-top').value = h.headlineTop||'';
+      document.getElementById('hero-highlight').value = h.headlineHighlight||'';
+      document.getElementById('hero-sub').value = h.subtext||'';
+      document.getElementById('cta-primary').value = h.ctaPrimary?.label||'';
+      document.getElementById('cta-secondary').value = h.ctaSecondary?.label||'';
+      document.getElementById('svc-label').value = content.servicesSection?.label||'';
+      document.getElementById('svc-subtitle').value = content.servicesSection?.subtitle||'';
+    }
+
+    function buildStatsForm() {
+      const container = document.getElementById('statsForm');
+      container.innerHTML = (content.stats||[]).map((s,i)=>`
+        <div style="display:grid;grid-template-columns:80px 1fr 60px;gap:12px;margin-bottom:12px;align-items:end;">
+          <div class="form-group" style="margin:0;">
+            <label style="font-size:0.75rem;">Number</label>
+            <input type="number" id="stat-target-${i}" value="${s.target}" oninput="updatePreview()" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;" />
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label style="font-size:0.75rem;">Label</label>
+            <input type="text" id="stat-label-${i}" value="${s.label}" oninput="updatePreview()" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;" />
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label style="font-size:0.75rem;">Suffix</label>
+            <input type="text" id="stat-suffix-${i}" value="${s.suffix}" oninput="updatePreview()" maxlength="3" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;" />
+          </div>
+        </div>`).join('');
+    }
+
+    function buildServicesForm() {
+      const container = document.getElementById('servicesForm');
+      container.innerHTML = (content.services||[]).map((s,i)=>`
+        <div style="border:1px solid #F0F2F5;border-radius:8px;padding:16px;margin-bottom:12px;">
+          <div class="form-row">
+            <div class="form-group" style="margin:0 0 12px;">
+              <label style="font-size:0.75rem;">Service Title</label>
+              <input type="text" id="svc-title-${i}" value="${s.title}" oninput="updatePreview()" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;" />
+            </div>
+            <div class="form-group" style="margin:0 0 12px;">
+              <label style="font-size:0.75rem;">Font Awesome Icon</label>
+              <input type="text" id="svc-icon-${i}" value="${s.icon}" oninput="updatePreview()" placeholder="fa-bone" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;" />
+            </div>
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label style="font-size:0.75rem;">Description</label>
+            <textarea id="svc-desc-${i}" rows="2" oninput="updatePreview()" style="padding:8px 10px;border:1.5px solid #E5EAF0;border-radius:8px;font-size:0.85rem;outline:none;width:100%;resize:vertical;">${s.description}</textarea>
+          </div>
+        </div>`).join('');
+    }
+
+    function readForm() {
+      const stats = (content.stats||[]).map((s,i)=>({
+        ...s,
+        target: parseInt(document.getElementById(`stat-target-${i}`)?.value)||s.target,
+        label: document.getElementById(`stat-label-${i}`)?.value||s.label,
+        suffix: document.getElementById(`stat-suffix-${i}`)?.value||s.suffix
+      }));
+      const services = (content.services||[]).map((s,i)=>({
+        ...s,
+        title: document.getElementById(`svc-title-${i}`)?.value||s.title,
+        icon: document.getElementById(`svc-icon-${i}`)?.value||s.icon,
+        description: document.getElementById(`svc-desc-${i}`)?.value||s.description
+      }));
+      return {
+        hero: {
+          ...content.hero,
+          badge: document.getElementById('hero-badge').value,
+          headlineTop: document.getElementById('hero-top').value,
+          headlineHighlight: document.getElementById('hero-highlight').value,
+          subtext: document.getElementById('hero-sub').value,
+          ctaPrimary: { ...content.hero.ctaPrimary, label: document.getElementById('cta-primary').value },
+          ctaSecondary: { ...content.hero.ctaSecondary, label: document.getElementById('cta-secondary').value }
+        },
+        stats,
+        servicesSection: {
+          ...content.servicesSection,
+          label: document.getElementById('svc-label').value,
+          subtitle: document.getElementById('svc-subtitle').value
+        },
+        services
+      };
+    }
+
+    function updatePreview() {
+      const d = readForm();
+      document.getElementById('prev-badge').textContent = d.hero.badge;
+      document.getElementById('prev-title').innerHTML = `${d.hero.headlineTop}<br><span class="hl">${d.hero.headlineHighlight}</span>`;
+      document.getElementById('prev-sub').textContent = d.hero.subtext;
+      document.getElementById('prev-cta1').textContent = d.hero.ctaPrimary.label;
+      document.getElementById('prev-cta2').textContent = d.hero.ctaSecondary.label;
+      document.getElementById('prev-svc-label').textContent = d.servicesSection.label;
+      document.getElementById('prev-stats').innerHTML = d.stats.map(s=>`<div class="preview-stat"><div class="num">${s.target.toLocaleString()}<span>${s.suffix}</span></div><div class="lbl">${s.label}</div></div>`).join('');
+      document.getElementById('prev-services').innerHTML = d.services.map(s=>`<div class="service-preview-item"><i class="fas ${s.icon}"></i><h5>${s.title}</h5><p>${s.description.substring(0,60)}...</p></div>`).join('');
+    }
+
+    function saveDraft() {
+      const data = readForm();
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+      content = data;
+      showDraftAlert(true);
+      showAlert('Draft saved to browser.');
+    }
+
+    function resetDraft() {
+      if (!confirm('Reset to the last published version? This will discard all unsaved changes.')) return;
+      localStorage.removeItem(DRAFT_KEY);
+      content = null;
+      loadContent();
+      showDraftAlert(false);
+      showAlert('Reset to published version.');
+    }
+
+    function exportJSON() {
+      saveDraft();
+      const json = JSON.stringify(readForm(), null, 2);
+      const blob = new Blob([json], { type:'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'content.json';
+      a.click();
+      showAlert('content.json downloaded! Place in data/ folder and push to GitHub to go live.');
+    }
+
+    function showDraftAlert(s){ document.getElementById('draftAlert').style.display=s?'flex':'none'; }
+    function showAlert(msg){ const el=document.getElementById('saveAlert'); document.getElementById('saveMsg').textContent=msg; el.style.display='flex'; setTimeout(()=>{el.style.display='none';},5000); }
+
+    loadContent();
+  </script>
+</body>
+</html>

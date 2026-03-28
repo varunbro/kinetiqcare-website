@@ -1,0 +1,60 @@
+{
+  "hero": {
+    "badge": "Now Live in India",
+    "headlineTop": "Physio at Your",
+    "headlineHighlight": "Fingertips.",
+    "subtext": "Expert physiotherapy — from your home, your office, or anywhere you are. No commute. No waiting room. Real results.",
+    "ctaPrimary": { "label": "Book a Session", "href": "contact.html" },
+    "ctaSecondary": { "label": "Learn More", "href": "about.html" }
+  },
+  "stats": [
+    { "id": "stat-patients", "target": 2500, "suffix": "+", "label": "Patients Treated" },
+    { "id": "stat-physios", "target": 50, "suffix": "+", "label": "Expert Physios" },
+    { "id": "stat-satisfaction", "target": 98, "suffix": "%", "label": "Satisfaction Rate" }
+  ],
+  "servicesSection": {
+    "label": "Our Specialities",
+    "title": "One Platform.",
+    "titleHighlight": "Every Kind",
+    "titleEnd": "of Care.",
+    "subtitle": "Whether you're recovering from surgery or managing a chronic condition, our certified physios are here for you."
+  },
+  "services": [
+    {
+      "id": "svc-ortho",
+      "icon": "fa-bone",
+      "title": "Orthopaedic",
+      "description": "Joints, spine, post-surgery recovery and musculoskeletal conditions treated with evidence-based protocols."
+    },
+    {
+      "id": "svc-sports",
+      "icon": "fa-running",
+      "title": "Sports Rehab",
+      "description": "Injury recovery and athlete conditioning programs designed by sports physio specialists."
+    },
+    {
+      "id": "svc-neuro",
+      "icon": "fa-brain",
+      "title": "Neuro Rehab",
+      "description": "Stroke, Parkinson's, balance disorders — expert neurological rehabilitation from home."
+    },
+    {
+      "id": "svc-cardio",
+      "icon": "fa-heartbeat",
+      "title": "Cardio Physio",
+      "description": "Post-bypass, breathing rehabilitation, and endurance training for a stronger heart and lungs."
+    },
+    {
+      "id": "svc-chronic",
+      "icon": "fa-infinity",
+      "title": "Chronic Care",
+      "description": "Arthritis, fibromyalgia, long-term pain management — sustained relief through personalized therapy."
+    },
+    {
+      "id": "svc-fitness",
+      "icon": "fa-dumbbell",
+      "title": "Fitness for All",
+      "description": "Teens to seniors — safe, structured fitness programs to improve strength, mobility and quality of life."
+    }
+  ]
+}

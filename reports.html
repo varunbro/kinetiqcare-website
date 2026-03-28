@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
@@ -31,25 +30,19 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="contact.html" class="nav-cta">Book Session</a></li>
       </ul>
-      <button class="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <span class="section-label">Resources</span>
     <h1>Download <span>Reports & Guides</span></h1>
     <p>Access your personalised exercise protocols, assessment reports, progress summaries, and educational guides.</p>
     <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span>/</span>
-      <span>Download Reports</span>
+      <a href="index.html">Home</a><span>/</span><span>Download Reports</span>
     </div>
   </section>
 
-  <!-- SEARCH & INTRO -->
   <section class="section-pad" style="background:var(--cream);">
     <div class="container">
       <div class="reports-hero-content">
@@ -66,12 +59,12 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
           <div style="background:var(--white);border-radius:var(--radius-lg);padding:28px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);">
             <div style="font-size:2.5rem;color:var(--teal);margin-bottom:8px;"><i class="fas fa-file-alt"></i></div>
-            <div style="font-size:2rem;font-weight:800;color:var(--navy);" data-target="148" data-suffix="">0</div>
+            <div id="stat-doc-count" style="font-size:2rem;font-weight:800;color:var(--navy);">—</div>
             <div style="font-size:0.85rem;color:var(--gray);margin-top:4px;">Total Documents</div>
           </div>
           <div style="background:var(--white);border-radius:var(--radius-lg);padding:28px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);">
             <div style="font-size:2.5rem;color:var(--teal);margin-bottom:8px;"><i class="fas fa-download"></i></div>
-            <div style="font-size:2rem;font-weight:800;color:var(--navy);" data-target="4200" data-suffix="+">0</div>
+            <div id="stat-downloads" style="font-size:2rem;font-weight:800;color:var(--navy);" data-target="4200" data-suffix="+">0</div>
             <div style="font-size:0.85rem;color:var(--gray);margin-top:4px;">Total Downloads</div>
           </div>
           <div style="background:var(--white);border-radius:var(--radius-lg);padding:28px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);">
@@ -87,7 +80,6 @@
         </div>
       </div>
 
-      <!-- Tabs -->
       <div class="reports-tabs">
         <button class="tab-btn active" data-tab="all">All Reports</button>
         <button class="tab-btn" data-tab="exercise">Exercise Protocols</button>
@@ -96,160 +88,18 @@
         <button class="tab-btn" data-tab="guide">Guides</button>
       </div>
 
-      <!-- Reports Grid -->
-      <div class="reports-grid">
-
-        <div class="report-card" data-type="exercise">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-exercise">Exercise Protocol</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 2.4 MB</span>
-          </div>
-          <h4>Knee Replacement Recovery — Phase 1</h4>
-          <p>Weeks 1–4 exercise programme for total knee arthroplasty. Includes 18 guided exercises with photo demonstrations.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Mar 2025</span>
-              <span><i class="fas fa-dumbbell"></i> Orthopaedic</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
+      <!-- Dynamic report cards injected here -->
+      <div class="reports-grid" id="reports-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);">
+          <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--teal);margin-bottom:12px;display:block;"></i>
+          Loading reports...
         </div>
-
-        <div class="report-card" data-type="assessment">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-assessment">Assessment Report</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 1.8 MB</span>
-          </div>
-          <h4>Initial Musculoskeletal Assessment</h4>
-          <p>Comprehensive initial assessment including range of motion, strength testing, posture analysis and functional movement screening results.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Feb 2025</span>
-              <span><i class="fas fa-bone"></i> Musculoskeletal</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="progress">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-progress">Progress Report</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 3.1 MB</span>
-          </div>
-          <h4>4-Week Progress Summary — Back Pain</h4>
-          <p>Monthly progress review including pain score trends, mobility improvements, functional outcome measures and upcoming programme adjustments.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Mar 2025</span>
-              <span><i class="fas fa-chart-line"></i> Progress</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="guide">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-guide">Patient Guide</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 4.5 MB</span>
-          </div>
-          <h4>Understanding Your Shoulder: A Patient Guide</h4>
-          <p>Comprehensive guide to shoulder anatomy, common conditions, and self-management strategies for rotator cuff injuries and impingement.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Jan 2025</span>
-              <span><i class="fas fa-book"></i> Education</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="exercise">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-exercise">Exercise Protocol</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 1.9 MB</span>
-          </div>
-          <h4>Sports Rehab — Return to Running Programme</h4>
-          <p>12-week progressive return-to-running protocol for hamstring injuries. Includes sprint mechanics drills, strength work and load monitoring guidelines.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Mar 2025</span>
-              <span><i class="fas fa-running"></i> Sports</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="assessment">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-assessment">Assessment Report</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 2.2 MB</span>
-          </div>
-          <h4>Neurological Assessment — Stroke Rehabilitation</h4>
-          <p>Detailed functional assessment using Barthel Index, Berg Balance Scale and NIHSS scores. Includes goal-setting summary and 3-month rehabilitation plan.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Feb 2025</span>
-              <span><i class="fas fa-brain"></i> Neuro</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="guide">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-guide">Patient Guide</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 2.8 MB</span>
-          </div>
-          <h4>Managing Arthritis: Daily Movement Guide</h4>
-          <p>Practical guide to gentle daily movements, joint protection strategies and flare-up management for rheumatoid and osteoarthritis patients.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Jan 2025</span>
-              <span><i class="fas fa-book"></i> Chronic Care</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="progress">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-progress">Progress Report</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 1.6 MB</span>
-          </div>
-          <h4>Cardio Rehab — 8-Week Progress Review</h4>
-          <p>Bi-monthly progress report including exercise tolerance, heart rate response, dyspnoea scores and functional capacity assessments.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Feb 2025</span>
-              <span><i class="fas fa-heartbeat"></i> Cardio</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
-        <div class="report-card" data-type="exercise">
-          <div class="report-card-header">
-            <span class="report-type-badge badge-exercise">Exercise Protocol</span>
-            <span class="report-file-type"><i class="fas fa-file-pdf"></i> PDF · 2.1 MB</span>
-          </div>
-          <h4>Core Stability Programme — Lower Back Pain</h4>
-          <p>8-week progressive core strengthening programme for chronic low back pain. Includes McKenzie exercises, Pilates-based movements and breathing techniques.</p>
-          <div class="report-meta">
-            <div class="report-info">
-              <span><i class="fas fa-calendar"></i> Mar 2025</span>
-              <span><i class="fas fa-dumbbell"></i> Chronic Care</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i> Download</button>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Login CTA -->
       <div class="reports-cta">
         <div style="font-size:3rem;margin-bottom:16px;">🔐</div>
         <h3>Access Your Personal Reports</h3>
-        <p>The reports above are sample templates. To access your personalised session reports, exercise protocols and progress summaries, log in to your Kinetiq Care patient portal.</p>
+        <p>The reports above are sample templates. To access your personalised session reports, log in to your Kinetiq Care patient portal.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
           <a href="#" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Patient Login</a>
           <a href="contact.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register as New Patient</a>
@@ -258,7 +108,6 @@
     </div>
   </section>
 
-  <!-- HOW TO USE REPORTS -->
   <section class="section-pad">
     <div class="container">
       <div class="text-center">
@@ -267,32 +116,13 @@
         <p class="section-subtitle">Your reports are designed to keep you informed and on track between sessions.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin:0 auto;">
-        <div style="text-align:center;">
-          <div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);">
-            <i class="fas fa-file-download"></i>
-          </div>
-          <h4 style="color:var(--navy);margin-bottom:8px;">Download & Save</h4>
-          <p style="font-size:0.88rem;color:var(--text-body);">Download your reports as PDFs and save them to your device for offline access anytime.</p>
-        </div>
-        <div style="text-align:center;">
-          <div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);">
-            <i class="fas fa-share-alt"></i>
-          </div>
-          <h4 style="color:var(--navy);margin-bottom:8px;">Share with Your GP</h4>
-          <p style="font-size:0.88rem;color:var(--text-body);">Share your assessment and progress reports with your doctor or surgeon for coordinated care.</p>
-        </div>
-        <div style="text-align:center;">
-          <div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h4 style="color:var(--navy);margin-bottom:8px;">Track Your Progress</h4>
-          <p style="font-size:0.88rem;color:var(--text-body);">Compare monthly progress reports to see how far you've come and what milestones remain.</p>
-        </div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);"><i class="fas fa-file-download"></i></div><h4 style="color:var(--navy);margin-bottom:8px;">Download & Save</h4><p style="font-size:0.88rem;color:var(--text-body);">Download your reports as PDFs and save them to your device for offline access anytime.</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);"><i class="fas fa-share-alt"></i></div><h4 style="color:var(--navy);margin-bottom:8px;">Share with Your GP</h4><p style="font-size:0.88rem;color:var(--text-body);">Share your assessment and progress reports with your doctor or surgeon for coordinated care.</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:rgba(46,196,182,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.75rem;color:var(--teal);"><i class="fas fa-chart-line"></i></div><h4 style="color:var(--navy);margin-bottom:8px;">Track Your Progress</h4><p style="font-size:0.88rem;color:var(--text-body);">Compare monthly progress reports to see how far you've come and what milestones remain.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
     <div class="container" style="position:relative;z-index:1;">
       <h2>Start Your Recovery — Get Your First Report</h2>
@@ -304,7 +134,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -313,66 +142,64 @@
           <div class="tagline">Virtual Physiotherapy · Anywhere</div>
           <p>Expert physiotherapy delivered to your screen. No commute, no waiting room — just real results from certified professionals.</p>
           <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="facilities.html">Facilities</a></li>
-            <li><a href="gallery.html">Photo Gallery</a></li>
-            <li><a href="reports.html">Download Reports</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#">Orthopaedic Physio</a></li>
-            <li><a href="#">Sports Rehabilitation</a></li>
-            <li><a href="#">Neuro Rehab</a></li>
-            <li><a href="#">Cardio Physiotherapy</a></li>
-            <li><a href="#">Chronic Care</a></li>
-            <li><a href="#">Fitness for All</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <div class="footer-contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p>Available Pan-India via Virtual Consultations</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-phone"></i>
-            <p>+91 98765 43210</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-envelope"></i>
-            <p>hello@kinetiqcare.in</p>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-clock"></i>
-            <p>Mon–Sat: 6 AM – 9 PM<br/>Sun: 8 AM – 6 PM</p>
-          </div>
-        </div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="facilities.html">Facilities</a></li><li><a href="gallery.html">Photo Gallery</a></li><li><a href="reports.html">Download Reports</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Orthopaedic Physio</a></li><li><a href="#">Sports Rehabilitation</a></li><li><a href="#">Neuro Rehab</a></li><li><a href="#">Cardio Physiotherapy</a></li><li><a href="#">Chronic Care</a></li><li><a href="#">Fitness for All</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item"><i class="fas fa-phone"></i><p>+91 98765 43210</p></div><div class="footer-contact-item"><i class="fas fa-envelope"></i><p>hello@kinetiqcare.in</p></div><div class="footer-contact-item"><i class="fas fa-clock"></i><p>Mon–Sat: 6 AM – 9 PM<br/>Sun: 8 AM – 6 PM</p></div></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Kinetiq Care. All rights reserved. | @kinetiqcare</p>
-        <div class="badges">
-          <span class="badge">HIPAA Compliant</span>
-          <span class="badge">ISO Certified</span>
-          <span class="badge">Now Live in India</span>
-        </div>
+        <div class="badges"><span class="badge">HIPAA Compliant</span><span class="badge">ISO Certified</span><span class="badge">Now Live in India</span></div>
       </div>
     </div>
   </footer>
 
+  <script src="js/data-loader.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    const BADGE_CLASS = { exercise: 'badge-exercise', assessment: 'badge-assessment', progress: 'badge-progress', guide: 'badge-guide' };
+    const BADGE_LABEL = { exercise: 'Exercise Protocol', assessment: 'Assessment Report', progress: 'Progress Report', guide: 'Patient Guide' };
+
+    function renderReports(reports) {
+      const grid = document.getElementById('reports-grid');
+      if (!reports.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray);">No reports available.</div>';
+        return;
+      }
+      grid.innerHTML = reports.map(r => `
+        <div class="report-card" data-type="${r.type}">
+          <div class="report-card-header">
+            <span class="report-type-badge ${BADGE_CLASS[r.type] || ''}">${BADGE_LABEL[r.type] || r.type}</span>
+            <span class="report-file-type"><i class="fas fa-file-pdf"></i> ${r.fileType} · ${r.fileSizeMB} MB</span>
+          </div>
+          <h4>${r.title}</h4>
+          <p>${r.description}</p>
+          <div class="report-meta">
+            <div class="report-info">
+              <span><i class="fas fa-calendar"></i> ${r.dateDisplay}</span>
+              <span><i class="fas ${r.specialtyIcon}"></i> ${r.specialty}</span>
+            </div>
+            <button class="download-btn" onclick="window.open('${r.downloadUrl}','_blank')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+        </div>`).join('');
+
+      document.getElementById('stat-doc-count').textContent = reports.length;
+      document.dispatchEvent(new CustomEvent('kcContentLoaded'));
+      window.initReportTabs();
+    }
+
+    KCData.loadReports().then(({ meta, reports }) => {
+      renderReports(reports);
+      const dlEl = document.getElementById('stat-downloads');
+      if (dlEl && meta) {
+        dlEl.dataset.target = meta.totalDownloads;
+        dlEl.dataset.suffix = '+';
+      }
+    });
+  </script>
 </body>
 </html>
