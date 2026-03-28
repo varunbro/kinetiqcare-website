@@ -10,10 +10,10 @@
 
 (function () {
   const SESSION_KEY = 'kc_admin_session';
-  const SESSION_TTL = 8 * 60 * 60 * 1000; // 8 hours
+  const SESSION_TTL = .2 * 60 * 60 * 1000; // 8 hours
 
   // SHA-256 of "kinetiq2025"
-  const ADMIN_HASH = 'c7e9a2d1b4f85c3e6d0a8b2f4e71c9d3a5b8e2f1c4d7a0b3e6f9c2d5a8b1e4';
+  const ADMIN_HASH = '48cfaf78c49724dc759cd836c5099985b5933b79a35e692f73792da3b3b43fae';
 
   const isLoginPage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/admin/') || window.location.pathname.endsWith('/admin');
 
